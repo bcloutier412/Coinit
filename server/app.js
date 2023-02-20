@@ -1,9 +1,8 @@
 const config = require("./utils/config");
 const express = require("express");
 const app = express();
-const axios = require("axios");
 const cors = require("cors");
-const userRouter = require("./controllers/users")
+const coinRouter = require("./controllers/coins");
 const middleware = require("./utils/middleware");
 const logger = require("./utils/logger");
 const mongoose = require("mongoose");
@@ -21,6 +20,10 @@ mongoose
     logger.error("error connection to MongoDB:", error.message);
   });
 
-  app.use('/api/users', userRouter);
+app.use(cors());
+app.use(express.json());
+// app.use(middleware.requestLogger)
 
-  module.exports = app;
+app.use("/api/coin", coinRouter);
+
+module.exports = app;

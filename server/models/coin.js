@@ -4,8 +4,8 @@ const userSchema = new mongoose.Schema({
   name: String,
 });
 
-const User = mongoose.model("User", userSchema);
+const Coin = mongoose.model("Coin", userSchema);
 
 module.exports = {
-  User,
+  Coin
 };
