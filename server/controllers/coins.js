@@ -1,7 +1,6 @@
 const coinRouter = require("express").Router();
 const axios = require("axios");
-
-const coinGeckoAPI = "https://api.coingecko.com/api/v3";
+const coinGeckoService = require('../services/coinGeckoService')
 
 coinRouter.get("/basicData/:coinId", (request, response, error) => {
     const coinId = request.params.coinId;
@@ -26,59 +25,35 @@ coinRouter.get("/basicData/:coinId", (request, response, error) => {
         });
 });
 
-coinRouter.get("/chartData/:coinId", (request, response, error) => {
-    const coinId = request.params.coinId;
-    // Fetching data for market chart
-    axios
-        .get(
-            coinGeckoAPI +
-                `/coins/${coinId}/market_chart?vs_currency=usd&days=1&interval=5m`
-        )
-        .then((response) => response.data)
-        .then((data) => {
-            console.log(data.prices.length);
-        })
-        .catch((error) => {
-            response.status(404).end();
-        });
+coinRouter.get("/chartData/:coinId", async (request, response, error) => {
+
+    const coinID = request.params.coinId;
+
+    try {
+        
+        // Fetching data for market chart
+        const chartData = await coinGeckoService.getChartData(coinID);
+        return response.send(chartData)
+    }
+    catch (error) {
+        console.log(error)
+        return response.status(404).send({ error: "Could Not Connect To API"});
+    }
 });
 
 coinRouter.get("/topCoins", (request, response, error) => {});
 
 coinRouter.get("/trendingCoins", async (request, response, error) => {
     try {
-        // Fetching all the trending coins converting it to an array of their ids
-        let trendingCoinsIDs = await axios.get(
-            coinGeckoAPI + "/search/trending"
-        );
-        trendingCoinsIDs = trendingCoinsIDs.data.coins.map((coin) => {
-            return coin.item.id;
-        });
-        trendingCoinsIDs = trendingCoinsIDs.join("%2C");
 
-        // Fetching all the market data for the trending coins using the coin ids
-        let trendingCoinsData = await axios.get(
-            coinGeckoAPI +
-                `/coins/markets?vs_currency=usd&ids=${trendingCoinsIDs}&order=volume_desc&page=1&sparkline=false&price_change_percentage=24h`
-        );
-
-        // Parsing coin data
-        trendingCoinsData = trendingCoinsData.data.map((coin) => {
-            return {
-                name: coin.name,
-                symbol: coin.symbol,
-                image: coin.image,
-                current_price: coin.current_price,
-                price_change_percentage_24h: coin.price_change_percentage_24h,
-                market_cap: coin.market_cap,
-            };
-        });
-        
-        // Sending coin data back to client
+        // Fetching Trending Coin data
+        const trendingCoinsData = await coinGeckoService.getTrendingCoins()
         response.send(trendingCoinsData);
+
     } catch (error) {
         console.log(error)
         return response.status(404).send({ error: "Could Not Connect To API"});
     }
 });
+
 module.exports = coinRouter;
