@@ -1,11 +1,15 @@
 const mongoose = require("mongoose");
 
-const userSchema = new mongoose.Schema({
+const coinSchema = new mongoose.Schema({
   name: String,
 });
 
-const Coin = mongoose.model("Coin", userSchema);
+coinSchema.set('toJSON', {
+  transform: (document, returnedObject) => {
+    returnedObject.id = returnedObject._id.toString()
+    delete returnedObject._id
+    delete returnedObject.__v
+  }
+})
 
-module.exports = {
-  Coin
-};
+module.exports = mongoose.model("Coin", coinSchema);

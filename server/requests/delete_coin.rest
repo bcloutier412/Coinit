@@ -1,0 +1,1 @@
+DELETE http://localhost:3001/api/coin/watchlist/63f9a273ccf23c88ecd82040
