@@ -1,6 +1,8 @@
 import { Link, useLocation } from "react-router-dom";
 import styles from "./Nav.module.css";
-import { useState } from "react";
+import React from "react";
+import NavLinks from "./NavLinks";
+
 const Nav = () => {
     return (
         <nav className={styles.nav}>
@@ -27,30 +29,6 @@ const CoinBaseLogo = () => {
                 fill="#0052FF"
             ></path>
         </svg>
-    );
-};
-
-const NavLinks = () => {
-    // Current Route
-    const location = useLocation().pathname.split("/", 2)[1];
-    const checkCurrentLocation = (pathName) => {
-        if (pathName === location) {
-            return { color: "blue"};
-        }
-        return null;
-    };
-
-    return (
-        <>
-            <Link
-                to={`home`}
-                className={styles.navLink}
-                style={checkCurrentLocation("home")}
-            >
-                <span>| |</span>
-                <span>Home</span>
-            </Link>
-        </>
     );
 };
 
