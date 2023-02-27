@@ -1,8 +1,11 @@
 import { Link, useLocation } from "react-router-dom";
 import styles from "./Nav.module.css";
 import React from "react";
-import NavLinks from "./NavLinks";
+import links from "./links";
 
+/*
+    Sidebar
+*/
 const Nav = () => {
     return (
         <nav className={styles.nav}>
@@ -12,6 +15,9 @@ const Nav = () => {
     );
 };
 
+/*
+    Coinbase logo
+*/
 const CoinBaseLogo = () => {
     return (
         <svg
@@ -29,6 +35,44 @@ const CoinBaseLogo = () => {
                 fill="#0052FF"
             ></path>
         </svg>
+    );
+};
+
+const NavLinks = () => {
+    // Getting Current Route
+    const location = useLocation().pathname.split("/", 2)[1];
+
+    /*
+     * Function will check if the path is the same as the current route and will return styles to be used
+     */
+    const checkCurrentLocation = (pathName) => {
+        if (pathName === location) {
+            return styles.active;
+        }
+        return null;
+    };
+
+    return (
+        <React.Fragment>
+            <div className={styles.navLinks}>
+                {
+                    links.map(link => {
+                        return (
+                            <Link
+                            to={link.path}
+                            className={`${styles.navLink} ${checkCurrentLocation(
+                                link.path
+                            )}`}
+                            key={link.path}
+                        >
+                            <span>|   |</span>
+                            <span>{link.text}</span>
+                        </Link>
+                        )
+                    })
+                }
+            </div>
+        </React.Fragment>
     );
 };
 
