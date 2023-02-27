@@ -6,13 +6,13 @@ import NavHeader from "./components/NavHeader/NavHeader";
 function App() {
     return (
         <div className={styles.App}>
-            <body className={styles.body}>
+            <div className={styles.body}>
                 <Nav />
                 <main className={styles.main}>
                     <NavHeader />
                     <Outlet />
                 </main>
-            </body>
+            </div>
         </div>
     );
 }
