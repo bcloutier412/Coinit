@@ -3,6 +3,7 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const coinRouter = require("./controllers/coins");
+const userRouter = require("./controllers/user")
 const middleware = require("./utils/middleware");
 const logger = require("./utils/logger");
 const mongoose = require("mongoose");
@@ -25,5 +26,6 @@ app.use(express.json());
 app.use(middleware.requestLogger)
 
 app.use("/api/coin", coinRouter);
+app.use("/api/user", userRouter);
 
 module.exports = app;

@@ -1,0 +1,6 @@
+.nav {
+    width: 240px;
+    height: 100%;
+    border-right: 1px solid rgba(91, 97, 110, 0.2);
+    flex-shrink: 0;
+}
