@@ -1,5 +1,5 @@
 import styles from "./App.module.css";
-import { Outlet, Link } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import Nav from "./components/Nav/Nav";
 import NavHeader from "./components/NavHeader/NavHeader";
 
