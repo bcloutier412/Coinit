@@ -2,6 +2,8 @@ import { Link, useLocation } from "react-router-dom";
 import styles from "./Nav.module.css";
 import React from "react";
 import links from "./links";
+import { useContext } from "react";
+import { UIContext } from "../../App";
 
 /*
     Sidebar
@@ -10,7 +12,7 @@ const Nav = () => {
     return (
         <nav className={styles.nav}>
             <CoinBaseLogo />
-            <NavLinks />
+            <NavLinks/>
         </nav>
     );
 };
@@ -48,10 +50,14 @@ const NavLinks = () => {
     const checkCurrentLocation = (pathName) => {
         if (pathName === location) {
             return styles.active;
+        } else if (!location && pathName === 'home') {
+            return styles.active;
         }
         return null;
     };
-
+    
+    const { header } = useContext(UIContext)
+    
     return (
         <React.Fragment>
             <div className={styles.navLinks}>
@@ -64,8 +70,9 @@ const NavLinks = () => {
                                 link.path
                             )}`}
                             key={link.path}
+                            onClick={() => header.setHeaderText(link.text)}
                         >
-                            <span>|   |</span>
+                            <span>{link.image}</span>
                             <span>{link.text}</span>
                         </Link>
                         )

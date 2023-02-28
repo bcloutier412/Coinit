@@ -23,8 +23,12 @@ const router = createBrowserRouter([
                 element: <Home />,
             },
             {
+                path: "assets",
+                element: <div>assets</div>,
+            },
+            {
                 path: "price/:id",
-                element: <price>hello</price>,
+                element: <div>hello</div>,
             },
         ],
     },
