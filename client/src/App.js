@@ -10,17 +10,17 @@ export const UIContext = React.createContext();
 
 function App() {
     const location = useLocation().pathname.split("/", 2)[1];
-    let currentPath;
+    let currentPathText;
     if (location === 'price'){
-        currentPath = {text:''}
+        currentPathText = {text:''}
     }
-    else if (!currentPath) {
-        currentPath = {text:'Home'}
+    else if (!currentPathText) {
+        currentPathText = {text:'Home'}
     } else {
-        currentPath = links.find(element => element.path === location);
+        currentPathText = links.find(element => element.path === location);
     }
     const [theme, setTheme] = useState("light");
-    const [headerText, setHeaderText] = useState(currentPath.text);
+    const [headerText, setHeaderText] = useState(currentPathText.text);
     const contextValue = {
         theme: { theme, setTheme },
         header: { headerText, setHeaderText },

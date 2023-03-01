@@ -41,22 +41,17 @@ const CoinBaseLogo = () => {
 };
 
 const NavLinks = () => {
-    // Getting Current Route
-    const location = useLocation().pathname.split("/", 2)[1];
+    const { header } = useContext(UIContext)
 
     /*
-     * Function will check if the path is the same as the current route and will return styles to be used
-     */
+     * Function will check if the link is the same as the current path, if it is 
+     */   
     const checkCurrentLocation = (pathName) => {
-        if (pathName === location) {
+        if (pathName === header.headerText) {
             return styles.active;
-        } else if (!location && pathName === 'home') {
-            return styles.active;
-        }
+        } 
         return null;
     };
-    
-    const { header } = useContext(UIContext)
     
     return (
         <React.Fragment>
@@ -67,7 +62,7 @@ const NavLinks = () => {
                             <Link
                             to={link.path}
                             className={`${styles.navLink} ${checkCurrentLocation(
-                                link.path
+                                link.text
                             )}`}
                             key={link.path}
                             onClick={() => header.setHeaderText(link.text)}
