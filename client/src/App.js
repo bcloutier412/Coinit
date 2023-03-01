@@ -4,26 +4,19 @@ import Nav from "./components/Nav/Nav";
 import NavHeader from "./components/NavHeader/NavHeader";
 import { useState } from "react";
 import React from "react";
-import links from "./components/Nav/links";
+import links, { paths }  from "./components/Nav/links";
 
 export const UIContext = React.createContext();
 
 function App() {
     const location = useLocation().pathname.split("/", 2)[1];
-    let currentPathText;
-    if (location === 'price'){
-        currentPathText = {text:''}
-    }
-    else if (!currentPathText) {
-        currentPathText = {text:'Home'}
-    } else {
-        currentPathText = links.find(element => element.path === location);
-    }
+    const [currentPath, setCurrentPath] = useState(paths[location]) 
     const [theme, setTheme] = useState("light");
-    const [headerText, setHeaderText] = useState(currentPathText.text);
+    const [headerText, setHeaderText] = useState(currentPath.headerText);
     const contextValue = {
         theme: { theme, setTheme },
         header: { headerText, setHeaderText },
+        currentPath: { path: currentPath.path, text: currentPath.text, setHeaderText: setHeaderText}
     };
 
     return (

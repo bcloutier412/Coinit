@@ -53,4 +53,19 @@ const links = [
     // }
 ];
 
+export const paths = {
+    home: {
+        headerText: 'Home' 
+    },
+    assets:{
+        headerText: 'My assets'
+    },
+    price: {
+        headerText: ''
+    },
+    '': {
+        headerText: 'Home'
+    }
+}
+
 export default links;
