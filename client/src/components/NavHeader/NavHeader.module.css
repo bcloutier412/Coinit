@@ -7,6 +7,7 @@
     align-items: center;
     padding: 16px 24px;
     font-size: 16px;
+    flex-shrink: 0;
 }
 
 .NavHeader header {

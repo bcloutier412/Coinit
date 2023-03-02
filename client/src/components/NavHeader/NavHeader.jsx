@@ -1,9 +1,12 @@
 import styles from "./NavHeader.module.css";
-import { useLocation } from "react-router-dom";
 import React, { useContext } from "react";
 import { UIContext } from "../../App";
 
+/*
+ * NavHeader component
+ */
 const NavHeader = () => {
+    // Get the header text from the UI context
     const { header } = useContext(UIContext);
 
     return (
@@ -14,6 +17,9 @@ const NavHeader = () => {
     );
 };
 
+/*
+ * NavHeaderLinks component
+ */
 const NavHeaderLinks = () => {
     return (
         <div className={styles.NavHeaderLinks}>

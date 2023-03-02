@@ -2,13 +2,13 @@
     *** STRUCTURE ***
     links [{
         path: [router path],
-        text: [text for button]
-    }]
+        text: [text for button],
+        image: [button image]
 */
 
 const links = [
     {
-        path: "home",
+        path: "/home",
         text: "Home",
         image: (
             <svg
@@ -24,7 +24,7 @@ const links = [
         ),
     },
     {
-        path: "assets",
+        path: "/assets",
         text: "My assets",
         image: (
             <svg

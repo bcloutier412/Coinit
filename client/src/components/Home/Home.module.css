@@ -1,0 +1,31 @@
+.wrapper {
+    flex-grow: 1;
+    overflow-y: scroll;
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+}
+.wrapper::-webkit-scrollbar {
+    display: none;
+}
+
+.content {
+    display: flex;
+    justify-content: end;
+}
+.main {
+    flex-grow: 1;
+}
+.topMoversWrapper {
+    width: 380px;
+    flex-shrink: 0;
+    position: relative;
+}
+
+.stuff {
+    height: 2000px;
+    background-color: red;
+}
+
+.moreStuff {
+    position: fixed;
+}
