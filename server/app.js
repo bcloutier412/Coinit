@@ -12,6 +12,7 @@ mongoose.set("strictQuery", false);
 
 logger.info("connecting to", config.MONGODB_URI);
 
+// Connecting to database
 mongoose
   .connect(config.MONGODB_URI)
   .then(() => {
@@ -21,10 +22,12 @@ mongoose
     logger.error("error connection to MongoDB:", error.message);
   });
 
+// Middleware before request hits routes
 app.use(cors());
 app.use(express.json());
 app.use(middleware.requestLogger)
 
+// Routes
 app.use("/api/coin", coinRouter);
 app.use("/api/user", userRouter);
 
