@@ -1,10 +1,11 @@
 import styles from "./App.module.css";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import Nav from "./components/Nav/Nav";
-import NavHeader from "./components/NavHeader/NavHeader";
+// import NavHeader from "./components/NavHeader/NavHeader";
 import { useState, useEffect } from "react";
 import React from "react";
 import { paths }  from "./components/Nav/links";
+import NavHeader from './components/NavHeader/NavHeader'
 
 export const UIContext = React.createContext(); 
 
