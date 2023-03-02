@@ -9,8 +9,15 @@ const Home = () => {
     const { header } = useContext(UIContext);
     return (
         <React.Fragment>
-            <div className={styles.container}>
-                <div className={styles.main}>hello</div>
+            <div className={styles.wrapper}>
+                <div className={styles.content}>
+                    <div className={styles.main}>
+                        <div className={styles.stuff}>hi</div>
+                    </div>
+                    <div className={styles.topMoversWrapper}>
+                        <div className={styles.moreStuff}>Morestuff</div>
+                    </div>
+                </div>
             </div>
         </React.Fragment>
     );
