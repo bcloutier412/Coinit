@@ -42,12 +42,13 @@ const CoinBaseLogo = () => {
 
 const NavLinks = () => {
     const { header } = useContext(UIContext)
+    const location = useLocation();
 
     /*
      * Function will check if the link is the same as the current path, if it is 
      */   
     const checkCurrentLocation = (pathName) => {
-        if (pathName === header.headerText) {
+        if (pathName === location.pathname) {
             return styles.active;
         } 
         return null;
@@ -62,7 +63,7 @@ const NavLinks = () => {
                             <Link
                             to={link.path}
                             className={`${styles.navLink} ${checkCurrentLocation(
-                                link.text
+                                link.path
                             )}`}
                             key={link.path}
                             onClick={() => header.setHeaderText(link.text)}

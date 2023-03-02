@@ -1,4 +1,4 @@
-import { Link, useOutletContext } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { UIContext } from "../../App";
 

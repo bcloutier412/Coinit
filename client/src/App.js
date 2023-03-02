@@ -1,24 +1,26 @@
 import styles from "./App.module.css";
-import { Outlet, useLocation } from "react-router-dom";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import Nav from "./components/Nav/Nav";
 import NavHeader from "./components/NavHeader/NavHeader";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import React from "react";
-import links, { paths }  from "./components/Nav/links";
+import { paths }  from "./components/Nav/links";
 
-export const UIContext = React.createContext();
+export const UIContext = React.createContext(); 
 
 function App() {
     const location = useLocation().pathname.split("/", 2)[1];
-    const [currentPath, setCurrentPath] = useState(paths[location]) 
     const [theme, setTheme] = useState("light");
-    const [headerText, setHeaderText] = useState(currentPath.headerText);
+    const [headerText, setHeaderText] = useState(paths[location].headerText);
     const contextValue = {
         theme: { theme, setTheme },
         header: { headerText, setHeaderText },
-        currentPath: { path: currentPath.path, text: currentPath.text, setHeaderText: setHeaderText}
     };
-
+    const navigate = useNavigate()
+    useEffect(() => {
+        if (!location) navigate('/home');
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
     return (
         <div className={styles.App}>
             <UIContext.Provider value={contextValue}>

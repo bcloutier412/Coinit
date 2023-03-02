@@ -8,7 +8,7 @@
 
 const links = [
     {
-        path: "home",
+        path: "/home",
         text: "Home",
         image: (
             <svg
@@ -24,7 +24,7 @@ const links = [
         ),
     },
     {
-        path: "assets",
+        path: "/assets",
         text: "My assets",
         image: (
             <svg
