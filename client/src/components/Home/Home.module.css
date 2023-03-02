@@ -16,8 +16,8 @@
     flex-grow: 1;
 }
 .topMoversWrapper {
-    width: 380px;
-    flex-shrink: 0;
+    min-width: 380px;
+    flex-shrink: 1;
     position: relative;
 }
 
@@ -28,4 +28,10 @@
 
 .moreStuff {
     position: fixed;
+}
+
+@media (max-width: 1475px) {
+    .topMoversWrapper {
+        display: none;
+    }
 }
