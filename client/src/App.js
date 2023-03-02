@@ -4,19 +4,20 @@ import Nav from "./components/Nav/Nav";
 import NavHeader from "./components/NavHeader/NavHeader";
 import { useState } from "react";
 import React from "react";
-import links, { paths }  from "./components/Nav/links";
+import { paths }  from "./components/Nav/links";
 
+// Create a new context to pass data to components
 export const UIContext = React.createContext();
 
 function App() {
+     // Get the current path from the URL and use it to set the initial currentPath state
     const location = useLocation().pathname.split("/", 2)[1];
-    const [currentPath, setCurrentPath] = useState(paths[location]) 
+
     const [theme, setTheme] = useState("light");
-    const [headerText, setHeaderText] = useState(currentPath.headerText);
+    const [headerText, setHeaderText] = useState(paths[location].headerText);
     const contextValue = {
         theme: { theme, setTheme },
         header: { headerText, setHeaderText },
-        currentPath: { path: currentPath.path, text: currentPath.text, setHeaderText: setHeaderText}
     };
 
     return (
