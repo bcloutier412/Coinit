@@ -37,3 +37,9 @@
 .navLink:hover {
     background-color: rgb(240, 243, 250);
 }
+
+@media (max-width: 1459px) {
+    .nav {
+        width: 87px;
+    }
+}

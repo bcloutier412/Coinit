@@ -8,30 +8,39 @@
     display: none;
 }
 
-.content {
+.container {
     display: flex;
-    justify-content: end;
+    justify-content: center;
 }
+
+/* MAIN Content in the middle.
+ *  Show balance, different coins
+ */
 .main {
     flex-grow: 1;
+    max-width: 1069px;
 }
-.topMoversWrapper {
+
+.mainContent {
+    height: 2000px;
+    background-color: red;
+}
+
+/* 
+ * Topmovers widget on the left
+ */
+.topMovers {
     min-width: 380px;
     flex-shrink: 1;
     position: relative;
 }
 
-.stuff {
-    height: 2000px;
-    background-color: red;
-}
-
-.moreStuff {
+.topMoversContent {
     position: fixed;
 }
 
-@media (max-width: 1475px) {
-    .topMoversWrapper {
+@media (max-width: 1310px) {
+    .topMovers {
         display: none;
     }
 }
