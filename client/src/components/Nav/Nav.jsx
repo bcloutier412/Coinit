@@ -70,7 +70,7 @@ const NavLinks = () => {
                             onClick={() => header.setHeaderText(link.text)}
                         >
                             <span>{link.image}</span>
-                            <span>{link.text}</span>
+                            <span className={styles.linkText}>{link.text}</span>
                         </Link>
                         )
                     })

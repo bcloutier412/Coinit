@@ -1,6 +1,4 @@
-import { Link } from "react-router-dom";
-import { useContext } from "react";
-import { UIContext } from "../../App";
+// import { Link } from "react-router-dom";
 import styles from "./Home.module.css";
 import React from "react";
 import TopMovers from "./TopMovers";
@@ -13,8 +11,6 @@ import Main from "./Main";
  * shows balance and watchlist
  */
 const Home = () => {
-    // Get the header state from the UI context
-    const { header } = useContext(UIContext);
 
     return (
         <React.Fragment>

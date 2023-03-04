@@ -30,7 +30,7 @@
 }
 
 .active {
-    color: #0052FF;
+    color: #0052ff;
     background-color: rgb(245, 248, 255);
 }
 
@@ -38,8 +38,15 @@
     background-color: rgb(240, 243, 250);
 }
 
+span {
+    height: 24px;
+}
+
 @media (max-width: 1459px) {
     .nav {
         width: 87px;
+    }
+    .linkText {
+        display: none;
     }
 }
