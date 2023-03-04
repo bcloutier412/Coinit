@@ -1,11 +1,10 @@
 // import { Link } from "react-router-dom";
 import styles from "./Home.module.css";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import TopMovers from "./TopMovers";
 import Main from "./Main";
 import { TailSpin } from "react-loading-icons";
-import { useState } from "react";
-
+import axios from "axios";
 // <Link to="../price/bitcoin" onClick={() => header.setHeaderText('Bitcoin')}>Bitcoin</Link>
 
 /*
@@ -13,19 +12,43 @@ import { useState } from "react";
  * shows balance and watchlist
  */
 const Home = () => {
-    const [loaded, setLoaded] = useState(false);
+    const [apiData, setApiData] = useState();
+
+    useEffect(() => {
+        async function fetchData() {
+            try {
+                const response = await Promise.all([
+                    axios.get("http://localhost:3001/api/user/watchlist"),
+                    axios.get('http://localhost:3001/api/coin/trendingCoins')
+                ]);
+
+                setApiData(response)
+            }
+            catch (error) {
+                console.log(error)
+            }
+        }
+        fetchData()
+    }, []);
     return (
         <React.Fragment>
-            {loaded ? 
-            <div className={styles.wrapper}>
-                <div className={styles.container}>
-                    {/* Main content showing balance and crypto tickers */}
-                    <Main />
+            {apiData ? (
+                <div className={styles.wrapper}>
+                    <div className={styles.container}>
+                        {/* Main content showing balance and crypto tickers */}
+                        <Main />
 
-                    {/* Top movers widget that goes on the right side of screen */}
-                    <TopMovers />
+                        {/* Top movers widget that goes on the right side of screen */}
+                        <TopMovers />
+                    </div>
                 </div>
-            </div> : <TailSpin className={styles.loader} stroke="#0052ff" speed={.75}/>}
+            ) : (
+                <TailSpin
+                    className={styles.loader}
+                    stroke="#0052ff"
+                    speed={0.75}
+                />
+            )}
         </React.Fragment>
     );
 };

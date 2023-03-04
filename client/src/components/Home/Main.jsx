@@ -30,7 +30,6 @@ const Prices = () => {
                 <h1>Prices</h1>
                 <div className={styles.buttons}>
                     <div className={styles.button}>Watchlist</div>
-                    <div className={styles.button}>Top assets</div>
                     <div className={styles.button}>Trending</div>
                 </div>
             </header>
