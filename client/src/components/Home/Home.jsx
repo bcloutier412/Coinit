@@ -36,7 +36,7 @@ const Home = () => {
                 <div className={styles.wrapper}>
                     <div className={styles.container}>
                         {/* Main content showing balance and crypto tickers */}
-                        <Main />
+                        <Main data={{ watchlistData: apiData[0].data, trendingCoinsData: apiData[1].data}}/>
 
                         {/* Top movers widget that goes on the right side of screen */}
                         <TopMovers />

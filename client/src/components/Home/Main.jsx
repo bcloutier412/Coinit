@@ -2,7 +2,9 @@ import styles from "./Home.module.css";
 // import { useContext } from "react";
 // import { UIContext } from "../../App";
 
-const Main = () => {
+const Main = ({ data }) => {
+    const watchlistData = data.watchlistData
+    const trendingCoinsData = data.trendingCoinsData
     return (
         <div className={styles.main}>
             <div className={styles.mainContent}>
