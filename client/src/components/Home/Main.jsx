@@ -25,7 +25,6 @@ const Balance = () => {
 
 const Prices = ({ data }) => {
     // const { header } = useContext(UIContext);
-    console.log(data);
     const [currentData, setCurrentData] = useState(data.watchlistData);
     return (
         <div className={styles.pricesContainer}>
@@ -49,14 +48,24 @@ const Prices = ({ data }) => {
             <ul>
                 {currentData.map((coin) => {
                     return (
-                        <Link className={styles.coin} key={coin.id} to={`/price/${coin.id}`}>
+                        <Link
+                            className={styles.coin}
+                            key={coin.id}
+                            to={`/price/${coin.id}`}
+                        >
                             <div className={styles.coinInfo}>
-                                <img src={coin.image} width="32px" height="32px"/>
+                                <div className={styles.image} style={{ backgroundImage: `url(${coin.image})`, borderRadius: '50px' }} ></div>
                             </div>
-                            <div className={styles.coinPrice}>{coin.current_price}</div>
-                            <div className={styles.coinPricePercentageChange}>{coin.price_change_percentage_24h}%</div>
-                            <div className={styles.coinMarketCap}>{coin.market_cap}</div>
-                            <button>Buy</button>
+                            <div className={styles.coinPrice}>
+                                ${coin.current_price}
+                            </div>
+                            <div className={styles.coinPricePercentageChange}>
+                                {coin.price_change_percentage_24h}%
+                            </div>
+                            <div className={styles.coinMarketCap}>
+                                {coin.market_cap}
+                            </div>
+                            <div>Buy</div>
                             <div>STAR</div>
                         </Link>
                     );
