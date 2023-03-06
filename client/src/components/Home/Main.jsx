@@ -1,15 +1,14 @@
 import styles from "./Home.module.css";
-// import { useContext } from "react";
+import { Link } from "react-router-dom";
+import { useState } from "react";
 // import { UIContext } from "../../App";
 
 const Main = ({ data }) => {
-    const watchlistData = data.watchlistData
-    const trendingCoinsData = data.trendingCoinsData
     return (
         <div className={styles.main}>
             <div className={styles.mainContent}>
                 <Balance />
-                <Prices />
+                <Prices data={data}/>
             </div>
         </div>
     );
@@ -24,8 +23,9 @@ const Balance = () => {
     )
 }
 
-const Prices = () => {
+const Prices = ({ data }) => {
     // const { header } = useContext(UIContext);
+    const [currentData, setCurrentData] = useState(data.watchlistData)
     return (
         <div className={styles.pricesContainer}>
             <header>
@@ -35,6 +35,13 @@ const Prices = () => {
                     <div className={styles.button}>Trending</div>
                 </div>
             </header>
+            <ul>
+                {currentData.map(coin => {
+                    return (
+                        <Link key={coin.id} to={`/price/${coin.id}`}>{coin.name}</Link>
+                    )
+                })}
+            </ul>
         </div>
     )
 }

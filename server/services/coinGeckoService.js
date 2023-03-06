@@ -48,6 +48,7 @@ const getMultipleCoinsData = async (coinsArray) => {
             current_price: coin.current_price,
             price_change_percentage_24h: coin.price_change_percentage_24h,
             market_cap: coin.market_cap,
+            id: coin.id
         };
     });
 
