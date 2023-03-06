@@ -47,6 +47,7 @@ const Prices = ({ data }) => {
             </header>
             <ul>
                 {currentData.map((coin) => {
+                    console.log(typeof coin.price_change_percentage_24h);
                     return (
                         <Link
                             className={styles.coin}
@@ -54,13 +55,23 @@ const Prices = ({ data }) => {
                             to={`/price/${coin.id}`}
                         >
                             <div className={styles.coinInfo}>
-                                <div className={styles.image} style={{ backgroundImage: `url(${coin.image})`, borderRadius: '50px' }} ></div>
+                                <div
+                                    className={styles.image}
+                                    style={{
+                                        backgroundImage: `url(${coin.image})`,
+                                        borderRadius: "50px",
+                                    }}
+                                ></div>
                             </div>
                             <div className={styles.coinPrice}>
-                                ${coin.current_price}
+                                $
+                                {Math.round(coin.current_price * 10000) / 10000}
                             </div>
                             <div className={styles.coinPricePercentageChange}>
-                                {coin.price_change_percentage_24h}%
+                                {Math.round(
+                                    coin.price_change_percentage_24h * 100
+                                ) / 100}
+                                %
                             </div>
                             <div className={styles.coinMarketCap}>
                                 {coin.market_cap}
