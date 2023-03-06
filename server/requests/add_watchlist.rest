@@ -1,1 +1,1 @@
-POST http://localhost:3001/api/user/watchlist/bitcoin
+POST http://localhost:3001/api/user/watchlist/litecoin

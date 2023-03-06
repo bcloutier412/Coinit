@@ -98,6 +98,7 @@
     padding: 16px 32px;
     color: black;
     text-decoration: none;
+    font-size: 16px;
 }
 
 .coin:hover {
@@ -130,4 +131,12 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+
+.negative {
+    color: rgb(207, 32, 47);
+}
+
+.positive {
+    color: rgb(9, 133, 81);
 }

@@ -37,7 +37,7 @@ const getMultipleCoinsData = async (coinsArray) => {
 
     let coinsDataArray = await axios.get(
         coinGeckoAPI +
-            `/coins/markets?vs_currency=usd&ids=${coinIDsString}&order=volume_desc&page=1&sparkline=false&price_change_percentage=24h`
+            `/coins/markets?vs_currency=usd&ids=${coinIDsString}&order=market_cap_desc&page=1&sparkline=false&price_change_percentage=24h`
     );
 
     coinsDataArray = coinsDataArray.data.map((coin) => {

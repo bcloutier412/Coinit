@@ -67,7 +67,7 @@ const Prices = ({ data }) => {
                                 $
                                 {Math.round(coin.current_price * 10000) / 10000}
                             </div>
-                            <div className={styles.coinPricePercentageChange}>
+                            <div className={`${styles.coinPricePercentageChange} ${coin.price_change_percentage_24h > 0 ? styles.positive : styles.negative}`}>
                                 {Math.round(
                                     coin.price_change_percentage_24h * 100
                                 ) / 100}
