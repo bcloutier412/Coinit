@@ -105,18 +105,23 @@
     background-color: rgb(250, 250, 250);
 }
 
+.coin > div {
+    display: flex;
+    width: 20%;
+    vertical-align: middle;
+    align-items: center;
+}
+
 .coin .coinInfo {
     display: flex;
-}
-.coin > div {
-    width: 16.6%;
+    gap: 16px;
 }
 
 .coin .image {
     height: 32px;
     width: 32px;
     background-position: center;
-    background-size: contain;
+    background-size: cover;
 }
 @media (max-width: 1310px) {
     .topMovers {
