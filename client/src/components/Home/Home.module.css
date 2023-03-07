@@ -110,18 +110,24 @@
     width: 20%;
     vertical-align: middle;
     align-items: center;
+    justify-content: center;
 }
 
 .coin .coinInfo {
     display: flex;
     gap: 16px;
+    justify-content: start;
 }
 
-.coin .image {
+.coin .coinInfo .image {
     height: 32px;
     width: 32px;
     background-position: center;
     background-size: cover;
+}
+
+.coin .coinPrice {
+    justify-content: start;
 }
 @media (max-width: 1310px) {
     .topMovers {
