@@ -103,6 +103,7 @@
 
 .coin:hover {
     background-color: rgb(250, 250, 250);
+    cursor: pointer;
 }
 
 .coin > div {
@@ -127,7 +128,7 @@
 }
 
 .coin .coinPrice {
-    justify-content: start;
+    justify-content: center;
 }
 @media (max-width: 1310px) {
     .topMovers {
@@ -150,4 +151,17 @@
 
 .positive {
     color: rgb(9, 133, 81);
+}
+
+.bi-star {
+    fill: #ffd60a;
+}
+
+.starButton {
+    display: flex;
+    width: 32px;
+    height: 32px;  
+    align-items: center;
+    justify-content: center;
+    border-radius: 50px;
 }
