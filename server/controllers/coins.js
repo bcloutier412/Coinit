@@ -59,4 +59,20 @@ coinRouter.get("/trendingCoins", async (request, response, error) => {
     }
 });
 
+/* 
+ * Get get top 10 market coins data from coingeckapi and sending to client
+ * Example: /topCoins
+ */
+coinRouter.get("/topCoins", async (request, response, error) => {
+    try {
+        // Fetching Trending Coin data
+        const topCoinsData = await coinGeckoService.getTopCoins();
+        
+        // returning data to client
+        return response.send(topCoinsData);
+    } catch (error) {
+        console.log(error);
+        return response.status(404).send({ error: "Could Not Connect To API" });
+    }
+});
 module.exports = coinRouter;

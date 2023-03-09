@@ -32,6 +32,27 @@ const getTrendingCoins = async () => {
     return trendingCoinsData;
 };
 
+const getTopCoins = async () => {
+    // Fetching the data from coinGeckoApi
+    let getTopCoinsData = await axios.get('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=10&page=1&sparkline=false')
+    
+    // Format response
+    getTopCoinsData = getTopCoinsData.data.map((coin) => {
+        return {
+            name: coin.name,
+            symbol: coin.symbol,
+            image: coin.image,
+            current_price: coin.current_price,
+            price_change_percentage_24h: coin.price_change_percentage_24h,
+            market_cap: coin.market_cap,
+            id: coin.id
+        };
+    });
+
+    // Return formatted data
+    return getTopCoinsData;
+}
+
 const getMultipleCoinsData = async (coinsArray) => {
     const coinIDsString = coinsArray.join("%2C");
 
@@ -59,4 +80,5 @@ module.exports = {
     getChartData,
     getCoinData,
     getMultipleCoinsData,
+    getTopCoins
 };

@@ -1,5 +1,5 @@
 import styles from "./Home.module.css";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useState, useRef } from "react";
 // import { UIContext } from "../../App";
 
@@ -39,10 +39,10 @@ const Prices = ({ data }) => {
                         Watchlist
                     </div>
                     <div
-                        onClick={() => setCurrentData(data.trendingCoinsData)}
+                        onClick={() => setCurrentData(data.topCoinsData)}
                         className={styles.button}
                     >
-                        Trending
+                        Top assets
                     </div>
                 </div>
             </header>
@@ -66,7 +66,7 @@ const Prices = ({ data }) => {
                                     }}
                                 ></div>
                                 <div>
-                                    <div>{coin.name}</div>
+                                    <div className={styles.bold}>{coin.name}</div>
                                     <div>{coin.symbol.toUpperCase()}</div>
                                 </div>
                             </div>
