@@ -145,6 +145,10 @@
     .topMovers {
         display: none;
     }
+    .mainContent {
+        /* background-color: red; */
+        border-right: none;
+    }
 }
 
 .loader {
