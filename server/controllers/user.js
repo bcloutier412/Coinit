@@ -45,10 +45,14 @@ userRouter.get("/watchlist", async (request, response, error) => {
     try {
         // Gettings list of coins in watchlist database
         let coins = await CoinModel.find({});
-
+        
         // Formatting array for use in api call
         coins = coins.map((coin) => coin.name);
 
+        // If the watchlist is empty send an empty array back
+        if (coins.length === 0) {
+            return response.send([])
+        }
         // Fetching the coins data from coingecko
         const coinsData = await coinGeckoService.getMultipleCoinsData(coins);
 
@@ -63,13 +67,13 @@ userRouter.get("/watchlist", async (request, response, error) => {
  * Route for removing a coin from user's watchlist
  * Deletes coin from database if it exists
  */
-userRouter.delete("/watchlist/:ID", async (request, response, error) => {
+userRouter.delete("/watchlist/:coinID", async (request, response, error) => {
     try {
         // Fetching Trending Coin data
-        const ID = request.params.ID;
+        const coinID = request.params.coinID;
 
         // Checking to see if the coin is in the database. If it is delete it from the database
-        const deletedCoin = await CoinModel.findByIdAndRemove(ID);
+        const deletedCoin = await CoinModel.deleteOne( {name: coinID});
         if (deletedCoin) return response.send(deletedCoin);
 
         return response.status(409).send({ error: "Coin not in database " });

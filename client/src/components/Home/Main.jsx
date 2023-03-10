@@ -1,6 +1,7 @@
 import styles from "./Home.module.css";
 import { useNavigate } from "react-router-dom";
 import { useState, useRef } from "react";
+import axios from "axios";
 // import { UIContext } from "../../App";
 
 const Main = ({ data }) => {
@@ -24,31 +25,53 @@ const Balance = () => {
 };
 
 const Prices = ({ data }) => {
-    // const { header } = useContext(UIContext);
-    const [currentData, setCurrentData] = useState(data.watchlistData);
     const navigate = useNavigate();
+
+    const [currentData, setCurrentData] = useState(data);
+    const [currentTab, setCurrentTab] = useState('watchlistData')
+    const handleDelete = (coinID) => {
+        const newData = {
+            topCoinsData: currentData['topCoinsData'],
+            watchlistData: currentData['watchlistData'].filter(coin => {
+                return coin.id !== coinID
+            })
+        }
+
+        setCurrentData(newData)
+    }
     return (
         <div className={styles.pricesContainer}>
+            {/*
+             * Header of the Cointainer
+             * EX: Prices      <Watchlist>  <Top assets>
+             */}
             <header>
                 <h1>Prices</h1>
                 <div className={styles.buttons}>
                     <div
-                        onClick={() => setCurrentData(data.watchlistData)}
+                        onClick={() => setCurrentTab('watchlistData')}
                         className={styles.button}
                     >
                         Watchlist
                     </div>
                     <div
-                        onClick={() => setCurrentData(data.topCoinsData)}
+                        onClick={() => setCurrentTab('topCoinsData')}
                         className={styles.button}
                     >
                         Top assets
                     </div>
                 </div>
             </header>
+
+            {/*
+             * Displays all of the coins
+             * EX: [bitcoin, price, mktcp]
+             *     [Ethereum, price, mktcp]
+             *     [litecoin, price, mktcp]
+             *     ...
+             */}
             <div>
-                {currentData.map((coin) => {
-                    // console.log(typeof coin.price_change_percentage_24h);
+                {currentData[currentTab].map((coin) => {
                     return (
                         <div
                             className={styles.coin}
@@ -66,7 +89,9 @@ const Prices = ({ data }) => {
                                     }}
                                 ></div>
                                 <div>
-                                    <div className={styles.bold}>{coin.name}</div>
+                                    <div className={styles.bold}>
+                                        {coin.name}
+                                    </div>
                                     <div>{coin.symbol.toUpperCase()}</div>
                                 </div>
                             </div>
@@ -92,7 +117,7 @@ const Prices = ({ data }) => {
                                 {formatMarketCap(coin.market_cap)}
                             </div>
                             <div style={{ textAlign: "center" }}>
-                                <StarButton />
+                                <StarButton coinID={coin.id} handleDelete={handleDelete}/>
                             </div>
                         </div>
                     );
@@ -151,16 +176,23 @@ const formatMarketCap = (market_cap) => {
     }
 };
 
-const StarButton = () => {
+const StarButton = ({ coinID, handleDelete }) => {
     const containerRef = useRef(null);
 
     const handleClick = (e) => {
-        e.stopPropagation()
-        containerRef.current.style.backgroundColor = 'rgb(240, 243, 250)';
-    }
+        e.stopPropagation();
+        containerRef.current.style.backgroundColor = "rgb(240, 243, 250)";
+        axios
+            .delete(`http://localhost:3001/api/user/watchlist/${coinID}`)
+            .then(() => {handleDelete(coinID)});
+    };
 
     return (
-        <div className={styles.starButton} ref={containerRef} onClick={handleClick}>
+        <div
+            className={styles.starButton}
+            ref={containerRef}
+            onClick={handleClick}
+        >
             <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="16"
