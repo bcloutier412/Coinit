@@ -29,7 +29,10 @@ const Prices = ({ data }) => {
 
     const [currentData, setCurrentData] = useState(data);
     const [currentTab, setCurrentTab] = useState('watchlistData')
-    const handleDelete = (coinID) => {
+
+    const handleDelete = async (coinID) => {
+        await axios.delete(`http://localhost:3001/api/user/watchlist/${coinID}`)
+        
         const newData = {
             topCoinsData: currentData['topCoinsData'],
             watchlistData: currentData['watchlistData'].filter(coin => {
@@ -182,9 +185,7 @@ const StarButton = ({ coinID, handleDelete }) => {
     const handleClick = (e) => {
         e.stopPropagation();
         containerRef.current.style.backgroundColor = "rgb(240, 243, 250)";
-        axios
-            .delete(`http://localhost:3001/api/user/watchlist/${coinID}`)
-            .then(() => {handleDelete(coinID)});
+        handleDelete(coinID)
     };
 
     return (
