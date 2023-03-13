@@ -1,7 +1,9 @@
 const coinRouter = require("express").Router();
 const coinGeckoService = require("../services/coinGeckoService");
 const CoinModel = require("../models/coin");
-const axios = require('axios')
+const axios = require("axios");
+var HttpsProxyAgent = require('https-proxy-agent');
+
 /*
  * Get coin data for a given coin ID
  * Example: /coinData/bitcoin
@@ -77,16 +79,25 @@ coinRouter.get("/topCoins", async (request, response, error) => {
 });
 
 coinRouter.get("/test", async (request, response, error) => {
-    try {
-        const testResponse = await axios.get("https://app.scrapingbee.com/api/v1", {
-            params: {
-                'api_key': 'TM9DTQ4DRH7FHQAKVHLOL7HOCPX13H4UDEQJINAEECYQWWEXJ4X1CPXOZH86UYG94JN07HCOIVAUB9OP',
-                'url': 'https://api.coingecko.com/api/v3/ping',  
-            } 
+    // try {
+    //     const testResponse = await axios.get("https://app.scrapingbee.com/api/v1", {
+    //         params: {
+    //             'api_key': 'TM9DTQ4DRH7FHQAKVHLOL7HOCPX13H4UDEQJINAEECYQWWEXJ4X1CPXOZH86UYG94JN07HCOIVAUB9OP',
+    //             'url': 'https://api.coingecko.com/api/v3/ping',
+    //         }
+    //     })
+    //     console.log(testResponse)
+    // } catch (error) {
+    //     console.log(error);
+    // }
+    const url = "https://ipinfo.io/ip";
+    const resp = axios
+        .get(url, {
+            proxy: false,
+            httpsAgent: new HttpsProxyAgent.HttpsProxyAgent('http://bcloutier412:cloutier461@dc.smartproxy.com:10000')
         })
-        console.log(testResponse)
-    } catch (error) {
-        console.log(error);
-    }
+        .then((resp) => {
+            console.log(resp.data);
+        });
 });
 module.exports = coinRouter;
