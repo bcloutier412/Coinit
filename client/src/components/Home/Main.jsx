@@ -1,8 +1,8 @@
 import styles from "./Home.module.css";
 import { useNavigate } from "react-router-dom";
-import { useState, useRef } from "react";
+import { useState, useRef, useContext } from "react";
 import axios from "axios";
-// import { UIContext } from "../../App";
+import { UIContext } from "../../App";
 
 const Main = ({ data }) => {
     return (
@@ -26,7 +26,7 @@ const Balance = () => {
 
 const Prices = ({ data }) => {
     const navigate = useNavigate();
-
+    const { header } = useContext(UIContext);
     const [currentData, setCurrentData] = useState(data);
     const [currentTab, setCurrentTab] = useState('watchlistData')
 
@@ -81,6 +81,7 @@ const Prices = ({ data }) => {
                             key={coin.id}
                             onClick={() => {
                                 navigate(`/price/${coin.id}`);
+                                header.setHeaderText(coin.name)
                             }}
                         >
                             <div className={styles.coinInfo}>

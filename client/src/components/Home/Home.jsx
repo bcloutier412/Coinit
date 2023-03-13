@@ -12,8 +12,10 @@ import axios from "axios";
  * shows balance and watchlist
  */
 const Home = () => {
+    // State for loading api data
     const [apiData, setApiData] = useState(null);
 
+    // Fetch the coin api data when mounting
     useEffect(() => {
         async function fetchData() {
             try {
