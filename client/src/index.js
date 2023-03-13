@@ -5,6 +5,7 @@ import App from "./App";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import ErrorPage from "./error-page";
 import Home from "./components/Home/Home";
+import Price from "./components/Price/Price";
 
 const router = createBrowserRouter([
     {
@@ -28,7 +29,8 @@ const router = createBrowserRouter([
             },
             {
                 path: "price/:id",
-                element: <div>hello</div>,
+                element: <Price />,
+                loader: ({params}) => params.id
             },
         ],
     },
