@@ -12,7 +12,7 @@ import axios from "axios";
  * shows balance and watchlist
  */
 const Home = () => {
-    const [apiData, setApiData] = useState();
+    const [apiData, setApiData] = useState(null);
 
     useEffect(() => {
         async function fetchData() {
