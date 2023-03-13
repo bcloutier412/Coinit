@@ -1,7 +1,10 @@
 const axios = require("axios");
 const coinGeckoAPI = "https://api.coingecko.com/api/v3";
 const HttpsProxyAgent = require("https-proxy-agent");
-const proxy = "http://bcloutier412:cloutier461@dc.smartproxy.com:10000";
+const config = require('../utils/config')
+
+const proxy = config.PROXY;
+
 const getCoinData = (coinID) => {
     const url =
         coinGeckoAPI +
