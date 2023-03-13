@@ -1,27 +1,41 @@
 const axios = require("axios");
 const coinGeckoAPI = "https://api.coingecko.com/api/v3";
-
+const HttpsProxyAgent = require("https-proxy-agent");
+const proxy = "http://bcloutier412:cloutier461@dc.smartproxy.com:10000";
 const getCoinData = (coinID) => {
-    // Fetching Coin data
-    const response = axios.get(
+    const url =
         coinGeckoAPI +
-            `/coins/${coinID}?localization=false&tickers=false&market_data=true&community_data=false&developer_data=false`
-    );
+        `/coins/${coinID}?localization=false&tickers=false&market_data=true&community_data=false&developer_data=false`;
+
+    // Fetching Coin data
+    const response = axios.get(url, {
+        proxy: false,
+        httpsAgent: new HttpsProxyAgent.HttpsProxyAgent(proxy),
+    });
     return response.then((response) => response.data);
 };
 
 const getChartData = (coinID) => {
-    // Fetching chart data for a coin
-    const response = axios.get(
+    const url =
         coinGeckoAPI +
-            `/coins/${coinID}/market_chart?vs_currency=usd&days=1&interval=5m`
-    );
+        `/coins/${coinID}/market_chart?vs_currency=usd&days=1&interval=5m`;
+
+    // Fetching chart data for a coin
+    const response = axios.get(url, {
+        proxy: false,
+        httpsAgent: new HttpsProxyAgent.HttpsProxyAgent(proxy),
+    });
     return response.then((response) => response.data);
 };
 
 const getTrendingCoins = async () => {
+    const url = coinGeckoAPI + "/search/trending";
+
     // Fetching all the trending coins converting it to an array of their ids
-    let trendingCoinsIDs = await axios.get(coinGeckoAPI + "/search/trending");
+    let trendingCoinsIDs = await axios.get(url, {
+        proxy: false,
+        httpsAgent: new HttpsProxyAgent.HttpsProxyAgent(proxy),
+    });
     trendingCoinsIDs = trendingCoinsIDs.data.coins.map((coin) => {
         return coin.item.id;
     });
@@ -33,9 +47,14 @@ const getTrendingCoins = async () => {
 };
 
 const getTopCoins = async () => {
+    const url =
+        "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=10&page=1&sparkline=false";
     // Fetching the data from coinGeckoApi
-    let getTopCoinsData = await axios.get('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=10&page=1&sparkline=false')
-    
+    let getTopCoinsData = await axios.get(url, {
+        proxy: false,
+        httpsAgent: new HttpsProxyAgent.HttpsProxyAgent(proxy),
+    });
+
     // Format response
     getTopCoinsData = getTopCoinsData.data.map((coin) => {
         return {
@@ -45,21 +64,25 @@ const getTopCoins = async () => {
             current_price: coin.current_price,
             price_change_percentage_24h: coin.price_change_percentage_24h,
             market_cap: coin.market_cap,
-            id: coin.id
+            id: coin.id,
         };
     });
 
     // Return formatted data
     return getTopCoinsData;
-}
+};
 
 const getMultipleCoinsData = async (coinsArray) => {
     const coinIDsString = coinsArray.join("%2C");
 
-    let coinsDataArray = await axios.get(
-        coinGeckoAPI +
-            `/coins/markets?vs_currency=usd&ids=${coinIDsString}&order=market_cap_desc&page=1&sparkline=false&price_change_percentage=24h`
-    );
+    const url = 
+    coinGeckoAPI +
+        `/coins/markets?vs_currency=usd&ids=${coinIDsString}&order=market_cap_desc&page=1&sparkline=false&price_change_percentage=24h`
+
+    let coinsDataArray = await axios.get(url, {
+        proxy: false,
+        httpsAgent: new HttpsProxyAgent.HttpsProxyAgent(proxy),
+    });
 
     coinsDataArray = coinsDataArray.data.map((coin) => {
         return {
@@ -69,7 +92,7 @@ const getMultipleCoinsData = async (coinsArray) => {
             current_price: coin.current_price,
             price_change_percentage_24h: coin.price_change_percentage_24h,
             market_cap: coin.market_cap,
-            id: coin.id
+            id: coin.id,
         };
     });
 
@@ -80,5 +103,5 @@ module.exports = {
     getChartData,
     getCoinData,
     getMultipleCoinsData,
-    getTopCoins
+    getTopCoins,
 };

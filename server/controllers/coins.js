@@ -90,7 +90,7 @@ coinRouter.get("/test", async (request, response, error) => {
     // } catch (error) {
     //     console.log(error);
     // }
-    const url = "https://ipinfo.io/ip";
+    const url = "https://api.coingecko.com/api/v3/ping";
     const resp = axios
         .get(url, {
             proxy: false,
@@ -98,6 +98,8 @@ coinRouter.get("/test", async (request, response, error) => {
         })
         .then((resp) => {
             console.log(resp.data);
-        });
+        }).catch((error) => {
+            console.log(error)
+        })
 });
 module.exports = coinRouter;

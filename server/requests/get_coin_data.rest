@@ -1,1 +1,1 @@
-GET http://localhost:3001/api/coin/coinData/2044-nuclear-apocalypse
+GET http://localhost:3001/api/coin/coinData/bitcoin
