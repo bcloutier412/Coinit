@@ -56,11 +56,14 @@ const Price = () => {
 };
 
 const Chart = ({ apiData }) => {
+    const marketData = apiData[1].data.prices;
     const chartdata = {
         series: [
             {
-                name: "Desktops",
-                data: [10, 41, 35, 51, 49, 62, 69, 91, 148],
+                name: "$",
+                data: marketData.map((dataPoint) => {
+                    return Math.round(dataPoint[1] * 100) / 100;
+                }),
             },
         ],
         options: {
@@ -74,29 +77,50 @@ const Chart = ({ apiData }) => {
                     show: false,
                 },
                 animations: {
-                    enabled: false
+                    enabled: false,
                 },
-                background: 'white',
+                background: "white",
                 fontFamily: "Segoe UI",
             },
+            tooltip: {
+                x: {
+                    show: true,
+                    format: 'H:mm',
+                    formatter: undefined,
+                },
+            },
+            colors: ["#3366FF"],
             dataLabels: {
                 enabled: false,
             },
             stroke: {
                 curve: "straight",
+                width: 2,
             },
             xaxis: {
-                categories: [
-                    "Jan",
-                    "Feb",
-                    "Mar",
-                    "Apr",
-                    "May",
-                    "Jun",
-                    "Jul",
-                    "Aug",
-                    "Sep",
-                ],
+                categories: marketData.map((dataPoint) => {
+                    return dataPoint[0];
+                }),
+                labels: {
+                    datetimeUTC: true,
+                    datetimeFormatter: {
+                        year: "yyyy",
+                        month: "MMM 'yy",
+                        day: "dd MMM",
+                        hour: "H:mm",
+                    },
+                    style: {
+                        fontFamily: 'Segoe UI',
+                        fontWeight: 500
+                    },
+                },
+                type: "datetime",
+                axisTicks: {
+                    show: false,
+                }
+            },
+            yaxis: {
+                show: false,
             },
         },
     };

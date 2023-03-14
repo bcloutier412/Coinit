@@ -2,6 +2,11 @@
     padding: 24px 48px;
     background-color: rgba(0, 62, 193, .03);
     overflow-y: scroll;
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+}
+.wrapper::-webkit-scrollbar {
+    display: none;
 }
 .container {
     height: 2000px;
@@ -17,7 +22,7 @@
 }
 
 .chartContainer .price {
-    
+
 }
 
 
