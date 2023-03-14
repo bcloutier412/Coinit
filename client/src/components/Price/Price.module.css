@@ -1,3 +1,27 @@
+.wrapper {
+    padding: 24px 48px;
+    background-color: rgba(0, 62, 193, .03);
+    overflow-y: scroll;
+}
+.container {
+    height: 2000px;
+}
+.chartContainer {
+    width: 100%;
+    border: 1px solid rgba(91, 97, 110, 0.2);
+    border-radius: 10px;
+}
+
+.chartContainer {
+
+}
+
+.chartContainer .price {
+    
+}
+
+
+
 .loader {
     height: 60px;
     width: 60px;
@@ -5,4 +29,8 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+
+.bgWhite {
+    background-color: white;
 }

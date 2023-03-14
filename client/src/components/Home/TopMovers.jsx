@@ -1,8 +1,11 @@
 import styles from "./Home.module.css";
 import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { UIContext } from "../../App";
 
 const TopMovers = ({ data }) => {
     const navigate = useNavigate();
+    const { header } = useContext(UIContext);
     return (
         <div className={styles.topMovers}>
             <div className={styles.topMoversContent}>
@@ -15,6 +18,7 @@ const TopMovers = ({ data }) => {
                             return (
                                 <div className={styles.coin} key={coin.id} onClick={() => {
                                     navigate(`/price/${coin.id}`);
+                                    header.setHeaderText(coin.name)
                                 }}>
                                     <div
                                         className={styles.coinInfo}
