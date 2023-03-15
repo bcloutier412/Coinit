@@ -18,19 +18,21 @@ const Price = () => {
             try {
                 const response = await Promise.all([
                     axios.get(
-                        `http://localhost:3001/api/coin/coinData/${coinID}`
+                        `http://192.168.1.30:3001/api/coin/coinData/${coinID}`
                     ),
                     axios.get(
-                        `http://localhost:3001/api/coin/chartData/${coinID}`
+                        `http://192.168.1.30:3001/api/coin/chartData/${coinID}`
                     ),
                 ]);
-
                 setApiData(response);
             } catch (error) {
                 console.log(error);
             }
         }
         fetchData();
+        const interval = setInterval(fetchData, 60000)
+
+        return () => {clearInterval(interval)}
     }, [coinID]);
 
     return (
@@ -56,7 +58,9 @@ const Price = () => {
 };
 
 const Chart = ({ apiData }) => {
+    const currentPrice = apiData[0].data.market_data.current_price.usd;
     const marketData = apiData[1].data.prices;
+
     const chartdata = {
         series: [
             {
@@ -85,7 +89,7 @@ const Chart = ({ apiData }) => {
             tooltip: {
                 x: {
                     show: true,
-                    format: 'H:mm',
+                    format: "H:mm",
                     formatter: undefined,
                 },
             },
@@ -110,14 +114,14 @@ const Chart = ({ apiData }) => {
                         hour: "H:mm",
                     },
                     style: {
-                        fontFamily: 'Segoe UI',
-                        fontWeight: 500
+                        fontFamily: "Segoe UI",
+                        fontWeight: 500,
                     },
                 },
                 type: "datetime",
                 axisTicks: {
                     show: false,
-                }
+                },
             },
             yaxis: {
                 show: false,
@@ -127,7 +131,9 @@ const Chart = ({ apiData }) => {
 
     return (
         <div className={`${styles.chartContainer} ${styles.bgWhite}`}>
-            <div className={styles.price}>$2000</div>
+            <header className={styles.header}>
+                <div className={styles.priceText}>${new Intl.NumberFormat('en-US').format(currentPrice)}</div>
+            </header>
             <ReactApexChart
                 options={chartdata.options}
                 series={chartdata.series}

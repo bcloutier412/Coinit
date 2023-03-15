@@ -20,9 +20,9 @@ const Home = () => {
         async function fetchData() {
             try {
                 const response = await Promise.all([
-                    axios.get("http://localhost:3001/api/user/watchlist"),
-                    axios.get('http://localhost:3001/api/coin/topCoins'),
-                    axios.get('http://localhost:3001/api/coin/trendingCoins')
+                    axios.get("http://192.168.1.30:3001/api/user/watchlist"),
+                    axios.get('http://192.168.1.30:3001/api/coin/topCoins'),
+                    axios.get('http://192.168.1.30:3001/api/coin/trendingCoins')
                 ]);
 
                 setApiData(response)

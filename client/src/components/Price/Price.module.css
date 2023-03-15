@@ -20,9 +20,11 @@
 .chartContainer {
 
 }
-
-.chartContainer .price {
-
+.chartContainer .header {
+    padding: 25px 32px 0px 32px;
+}
+.chartContainer .header .priceText {
+    font-size: 48px;
 }
 
 
@@ -38,4 +40,14 @@
 
 .bgWhite {
     background-color: white;
+}
+
+@media (max-width: 770px) {
+    .wrapper {
+        padding: 0;
+    }
+    .chartContainer {
+        border-radius: 0px;
+        border-top: none;
+    }
 }

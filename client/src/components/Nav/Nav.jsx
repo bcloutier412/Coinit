@@ -2,17 +2,30 @@ import { Link, useLocation } from "react-router-dom";
 import styles from "./Nav.module.css";
 import React from "react";
 import links from "./links";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { UIContext } from "../../App";
+import { NavHeaderLinks } from '../NavHeader/NavHeader'
 
 /*
     Sidebar component
 */
 const Nav = () => {
+
+    const [windowWidth, setWindowWidth] = useState(window.innerWidth)
+
+    useEffect(() => {
+        window.addEventListener("resize", () => {
+            setWindowWidth(window.innerWidth)
+            console.log(window.innerWidth)
+        })
+        return () => window.addEventListener("resize", () => {
+            setWindowWidth(window.innerWidth)
+        })
+    })
     return (
         <nav className={styles.nav}>
             <CoinBaseLogo />
-            <NavLinks/>
+            {windowWidth > 770 ? <NavLinks/> : <NavHeaderLinks />}
         </nav>
     );
 };
@@ -40,7 +53,7 @@ const CoinBaseLogo = () => {
     );
 };
 
-const NavLinks = () => {
+export const NavLinks = () => {
     const { header } = useContext(UIContext)
     const location = useLocation();
 

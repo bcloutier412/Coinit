@@ -120,7 +120,7 @@ const Prices = ({ data }) => {
                             <div className={styles.coinMarketCap}>
                                 {formatMarketCap(coin.market_cap)}
                             </div>
-                            <div style={{ textAlign: "center" }}>
+                            <div className={styles.starButtonContainer}>
                                 <StarButton coinID={coin.id} handleDelete={handleDelete}/>
                             </div>
                         </div>

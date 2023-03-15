@@ -50,3 +50,25 @@ span {
         display: none;
     }
 }
+
+@media (max-width: 770px) {
+    .nav {
+        width: auto;
+        height: 50px;
+        flex-direction: row;
+        padding-top: 0;
+        padding-bottom: 0;
+        justify-content: space-between;
+    }
+    .navLinks {
+        flex-direction: row;
+    }
+    .navLink {
+        padding: 10px;
+        align-self: center;
+    }
+
+    .navLink:first-child {
+        order: 1;
+    }
+}
