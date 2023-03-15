@@ -10,6 +10,9 @@
 }
 .container {
     height: 2000px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
 }
 .chartContainer {
     width: 100%;
@@ -17,9 +20,6 @@
     border-radius: 10px;
 }
 
-.chartContainer {
-
-}
 .chartContainer .header {
     padding: 25px 32px 0px 32px;
 }
@@ -27,7 +27,20 @@
     font-size: 48px;
 }
 
-
+.statsOverviewContainer {
+    display: flex;
+    gap: 24px;
+}
+.statsContainer {
+    width: 100%;
+    border: 1px solid rgba(91, 97, 110, 0.2);
+    border-radius: 10px;
+}
+.overviewContainer {
+    width: 100%;
+    border: 1px solid rgba(91, 97, 110, 0.2);
+    border-radius: 10px;
+}
 
 .loader {
     height: 60px;
@@ -49,5 +62,12 @@
     .chartContainer {
         border-radius: 0px;
         border-top: none;
+    }
+    .statsContainer {
+        border-radius: 0px;
+    }
+    .statsOverviewContainer {
+        display: flex;
+        flex-direction: column;
     }
 }

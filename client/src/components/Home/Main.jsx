@@ -49,7 +49,7 @@ const Prices = ({ data }) => {
              * EX: Prices      <Watchlist>  <Top assets>
              */}
             <header>
-                <h1>Prices</h1>
+                <h1><div>Prices</div></h1>
                 <div className={styles.buttons}>
                     <div
                         onClick={() => setCurrentTab('watchlistData')}

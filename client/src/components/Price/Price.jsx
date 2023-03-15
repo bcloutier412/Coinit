@@ -41,8 +41,8 @@ const Price = () => {
                 <div className={styles.wrapper}>
                     <div className={styles.container}>
                         <Chart apiData={apiData} />
-                        {/* <Stats /> */}
-                        {/* <Overview /> */}
+                        <Stats />
+                        <Overview />
                         {/* <News /> */}
                     </div>
                 </div>
@@ -143,4 +143,20 @@ const Chart = ({ apiData }) => {
         </div>
     );
 };
+
+const Stats = () => {
+    return (
+        <div className={`${styles.statsContainer} ${styles.bgWhite}`}>
+            <header>Market stats</header>
+        </div>
+    )
+}
+
+const Overview = () => {
+    return (
+        <div className={`${styles.overviewContainer} ${styles.bgWhite}`}>
+            <header>Overview</header>
+        </div>
+    )
+}
 export default Price;
