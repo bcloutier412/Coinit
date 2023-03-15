@@ -26,6 +26,7 @@ const Price = () => {
                         `http://192.168.1.30:3001/api/coin/chartData/${coinID}`
                     ),
                 ]);
+                console.log(response[0])
                 header.setHeaderText(response[0].data.name)
                 setApiData(response);
             } catch (error) {
@@ -152,7 +153,11 @@ const Stats = () => {
         <div className={`${styles.infoContainer} ${styles.bgWhite}`}>
             <header>Market stats</header>
             <div className={styles.statsContainer}>
-                <div></div>
+                <div>Market cap</div>
+                <div>Volume</div>
+                <div>Circulating supply</div>
+                <div>All time high</div>
+                <div>Sentimentvotesup</div>
             </div>
         </div>
     )

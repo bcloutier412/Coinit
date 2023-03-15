@@ -32,25 +32,22 @@
     gap: 24px;
 }
 .infoContainer {
-    width: 100%;
-    border: 1px solid rgba(91, 97, 110, 0.2);
-    border-radius: 10px;
-}
-.infoContainer {
+    padding: 16px 24px;
     width: 100%;
     border: 1px solid rgba(91, 97, 110, 0.2);
     border-radius: 10px;
 }
 
 .infoContainer header {
-    padding: 16px 24px;
     font-size: 16px;
     font-weight: 600;
     line-height: 24px;
+    padding-bottom: 16px;
 }
 
 .statsContainer {
     display: flex;
+    justify-content: space-between;
 }
 .loader {
     height: 60px;
