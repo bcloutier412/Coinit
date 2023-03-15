@@ -19,7 +19,6 @@ const Price = () => {
     useEffect(() => {
         async function fetchData() {
             try {
-                console.log("fetching");
                 const response = await Promise.all([
                     axios.get(
                         `http://localhost:3001/api/coin/coinData/${coinID}`
@@ -29,7 +28,6 @@ const Price = () => {
                     ),
                 ]);
                 if (header.headerText !== response[0].data.name) {
-                    console.log("setHeader text");
                     header.setHeaderText(response[0].data.name);
                 }
                 setApiData(response);
@@ -41,7 +39,6 @@ const Price = () => {
         const interval = setInterval(fetchData, 60000);
 
         return () => {
-            console.log("clearing interval");
             clearInterval(interval);
         };
     }, [coinID, header]);
@@ -159,8 +156,7 @@ const Chart = ({ apiData }) => {
 
 const Stats = ({ apiData }) => {
     const coinData = apiData[0].data.market_data;
-    console.log(coinData);
-    // console.log(coinData)
+
     return (
         <div className={`${styles.infoContainer} ${styles.bgWhite}`}>
             <header>Market stats</header>
@@ -175,7 +171,7 @@ const Stats = ({ apiData }) => {
                 </div>
                 <div>
                     <h1>Total supply</h1>
-                    {formatMarketCap(coinData.max_supply)}
+                    {formatMarketCap(coinData.total_supply)}
                 </div>
                 <div>
                     <h1>All time high</h1>

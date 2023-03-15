@@ -1,5 +1,23 @@
 export const formatMarketCap = (market_cap) => {
-    if (market_cap >= 1000000000) {
+    market_cap = Math.round(market_cap)
+    if (market_cap >= 1000000000000) {
+        console.log('formatting')
+        let string_market_cap = market_cap.toString();
+        string_market_cap = string_market_cap.slice(
+            0,
+            string_market_cap.length - 11
+        );
+        return (
+            string_market_cap.slice(0, string_market_cap.length - 1) +
+            "." +
+            string_market_cap.slice(
+                string_market_cap.length - 1,
+                string_market_cap.length
+            ) +
+            "T"
+        );
+    }
+    else if (market_cap >= 1000000000) {
         let string_market_cap = market_cap.toString();
         string_market_cap = string_market_cap.slice(
             0,
