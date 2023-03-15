@@ -1,9 +1,7 @@
 import styles from "./NavHeader.module.css";
 import React, { useContext, useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
 import { UIContext } from "../../App";
 import { NavLinks } from "../Nav/Nav";
-import { paths } from "../Nav/links";
 /*
  * NavHeader component
  */
