@@ -1,11 +1,13 @@
 import styles from "./Price.module.css";
 import { useLoaderData } from "react-router-dom";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
+import { UIContext } from "../../App";
 import { TailSpin } from "react-loading-icons";
 import axios from "axios";
 import ReactApexChart from "react-apexcharts";
 
 const Price = () => {
+    const { header } = useContext(UIContext);
     // Getting param from the URL
     const coinID = useLoaderData();
 
@@ -24,6 +26,7 @@ const Price = () => {
                         `http://192.168.1.30:3001/api/coin/chartData/${coinID}`
                     ),
                 ]);
+                header.setHeaderText(response[0].data.name)
                 setApiData(response);
             } catch (error) {
                 console.log(error);
@@ -146,15 +149,18 @@ const Chart = ({ apiData }) => {
 
 const Stats = () => {
     return (
-        <div className={`${styles.statsContainer} ${styles.bgWhite}`}>
+        <div className={`${styles.infoContainer} ${styles.bgWhite}`}>
             <header>Market stats</header>
+            <div className={styles.statsContainer}>
+                <div></div>
+            </div>
         </div>
     )
 }
 
 const Overview = () => {
     return (
-        <div className={`${styles.overviewContainer} ${styles.bgWhite}`}>
+        <div className={`${styles.infoContainer} ${styles.bgWhite}`}>
             <header>Overview</header>
         </div>
     )

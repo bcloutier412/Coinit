@@ -31,17 +31,27 @@
     display: flex;
     gap: 24px;
 }
-.statsContainer {
+.infoContainer {
     width: 100%;
     border: 1px solid rgba(91, 97, 110, 0.2);
     border-radius: 10px;
 }
-.overviewContainer {
+.infoContainer {
     width: 100%;
     border: 1px solid rgba(91, 97, 110, 0.2);
     border-radius: 10px;
 }
 
+.infoContainer header {
+    padding: 16px 24px;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 24px;
+}
+
+.statsContainer {
+    display: flex;
+}
 .loader {
     height: 60px;
     width: 60px;
