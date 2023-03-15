@@ -5,6 +5,7 @@ import { UIContext } from "../../App";
 import { TailSpin } from "react-loading-icons";
 import axios from "axios";
 import ReactApexChart from "react-apexcharts";
+import { formatMarketCap } from "../../utils/formattingFunctions";
 
 const Price = () => {
     const { header } = useContext(UIContext);
@@ -18,26 +19,32 @@ const Price = () => {
     useEffect(() => {
         async function fetchData() {
             try {
+                console.log("fetching");
                 const response = await Promise.all([
                     axios.get(
-                        `http://192.168.1.30:3001/api/coin/coinData/${coinID}`
+                        `http://localhost:3001/api/coin/coinData/${coinID}`
                     ),
                     axios.get(
-                        `http://192.168.1.30:3001/api/coin/chartData/${coinID}`
+                        `http://localhost:3001/api/coin/chartData/${coinID}`
                     ),
                 ]);
-                console.log(response[0])
-                header.setHeaderText(response[0].data.name)
+                if (header.headerText !== response[0].data.name) {
+                    console.log('setHeader text')
+                    header.setHeaderText(response[0].data.name);
+                }
                 setApiData(response);
             } catch (error) {
                 console.log(error);
             }
         }
         fetchData();
-        const interval = setInterval(fetchData, 60000)
+        const interval = setInterval(fetchData, 60000);
 
-        return () => {clearInterval(interval)}
-    }, [coinID]);
+        return () => {
+            console.log("clearing interval");
+            clearInterval(interval);
+        };
+    }, [coinID, header]);
 
     return (
         <React.Fragment>
@@ -45,7 +52,7 @@ const Price = () => {
                 <div className={styles.wrapper}>
                     <div className={styles.container}>
                         <Chart apiData={apiData} />
-                        <Stats />
+                        <Stats apiData={apiData} />
                         <Overview />
                         {/* <News /> */}
                     </div>
@@ -136,7 +143,9 @@ const Chart = ({ apiData }) => {
     return (
         <div className={`${styles.chartContainer} ${styles.bgWhite}`}>
             <header className={styles.header}>
-                <div className={styles.priceText}>${new Intl.NumberFormat('en-US').format(currentPrice)}</div>
+                <div className={styles.priceText}>
+                    ${new Intl.NumberFormat("en-US").format(currentPrice)}
+                </div>
             </header>
             <ReactApexChart
                 options={chartdata.options}
@@ -148,26 +157,39 @@ const Chart = ({ apiData }) => {
     );
 };
 
-const Stats = () => {
+const Stats = ({ apiData }) => {
+    const coinData = apiData[0].data.market_data;
+    // console.log(coinData)
     return (
         <div className={`${styles.infoContainer} ${styles.bgWhite}`}>
             <header>Market stats</header>
             <div className={styles.statsContainer}>
-                <div>Market cap</div>
-                <div>Volume</div>
-                <div>Circulating supply</div>
-                <div>All time high</div>
-                <div>Sentimentvotesup</div>
+                <div>
+                    <h1>Market cap</h1>$
+                    {formatMarketCap(coinData.market_cap.usd)}
+                </div>
+                <div>
+                    <h1>Volume</h1>
+                </div>
+                <div>
+                    <h1>Circulating supply</h1>
+                </div>
+                <div>
+                    <h1>All time high</h1>
+                </div>
+                <div>
+                    <h1>Market Sentiment</h1>
+                </div>
             </div>
         </div>
-    )
-}
+    );
+};
 
 const Overview = () => {
     return (
         <div className={`${styles.infoContainer} ${styles.bgWhite}`}>
             <header>Overview</header>
         </div>
-    )
-}
+    );
+};
 export default Price;

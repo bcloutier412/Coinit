@@ -49,6 +49,16 @@
     display: flex;
     justify-content: space-between;
 }
+
+.statsContainer > div > h1 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #5B616E;
+    padding-bottom: 5px;
+}
+.statsContainer > div {
+    /* background-color: red; */
+}
 .loader {
     height: 60px;
     width: 60px;
@@ -70,11 +80,11 @@
         border-radius: 0px;
         border-top: none;
     }
-    .statsContainer {
-        border-radius: 0px;
-    }
     .statsOverviewContainer {
         display: flex;
         flex-direction: column;
+    }
+    .infoContainer {
+        border-radius: 0;
     }
 }
