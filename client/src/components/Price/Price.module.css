@@ -48,6 +48,8 @@
 .statsContainer {
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 30px;
 }
 
 .statsContainer > div > h1 {
@@ -55,9 +57,6 @@
     font-weight: 600;
     color: #5B616E;
     padding-bottom: 5px;
-}
-.statsContainer > div {
-    /* background-color: red; */
 }
 .loader {
     height: 60px;
@@ -86,5 +85,13 @@
     }
     .infoContainer {
         border-radius: 0;
+    }
+    .statsContainer {
+        flex-direction: column;
+    }
+    .statsContainer > div{
+        display: flex;
+        justify-content: space-between;
+        padding: 16px 0px;
     }
 }

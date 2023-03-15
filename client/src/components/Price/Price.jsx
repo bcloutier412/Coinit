@@ -29,7 +29,7 @@ const Price = () => {
                     ),
                 ]);
                 if (header.headerText !== response[0].data.name) {
-                    console.log('setHeader text')
+                    console.log("setHeader text");
                     header.setHeaderText(response[0].data.name);
                 }
                 setApiData(response);
@@ -159,6 +159,7 @@ const Chart = ({ apiData }) => {
 
 const Stats = ({ apiData }) => {
     const coinData = apiData[0].data.market_data;
+    console.log(coinData);
     // console.log(coinData)
     return (
         <div className={`${styles.infoContainer} ${styles.bgWhite}`}>
@@ -169,13 +170,16 @@ const Stats = ({ apiData }) => {
                     {formatMarketCap(coinData.market_cap.usd)}
                 </div>
                 <div>
-                    <h1>Volume</h1>
+                    <h1>Circulating supply</h1>
+                    {formatMarketCap(coinData.circulating_supply)}
                 </div>
                 <div>
-                    <h1>Circulating supply</h1>
+                    <h1>Total supply</h1>
+                    {formatMarketCap(coinData.max_supply)}
                 </div>
                 <div>
                     <h1>All time high</h1>
+                    ${formatMarketCap(coinData.ath.usd)}
                 </div>
                 <div>
                     <h1>Market Sentiment</h1>

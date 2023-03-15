@@ -14,7 +14,6 @@ const NavHeader = () => {
     useEffect(() => {
         window.addEventListener("resize", () => {
             setWindowWidth(window.innerWidth)
-            console.log(window.innerWidth)
         })
         return () => window.addEventListener("resize", () => {
             setWindowWidth(window.innerWidth)
