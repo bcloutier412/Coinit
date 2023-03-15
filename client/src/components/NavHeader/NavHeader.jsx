@@ -1,7 +1,9 @@
 import styles from "./NavHeader.module.css";
 import React, { useContext, useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import { UIContext } from "../../App";
 import { NavLinks } from "../Nav/Nav";
+import { paths } from "../Nav/links";
 /*
  * NavHeader component
  */
@@ -10,7 +12,6 @@ const NavHeader = () => {
     const { header } = useContext(UIContext);
 
     const [windowWidth, setWindowWidth] = useState(window.innerWidth)
-
     useEffect(() => {
         window.addEventListener("resize", () => {
             setWindowWidth(window.innerWidth)
@@ -18,7 +19,7 @@ const NavHeader = () => {
         return () => window.addEventListener("resize", () => {
             setWindowWidth(window.innerWidth)
         })
-    })
+    }, [])
 
     return (
         <div className={styles.NavHeader}>

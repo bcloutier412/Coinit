@@ -174,8 +174,7 @@ const Stats = ({ apiData }) => {
                     {formatMarketCap(coinData.total_supply)}
                 </div>
                 <div>
-                    <h1>All time high</h1>
-                    ${formatMarketCap(coinData.ath.usd)}
+                    <h1>All time high</h1>${formatMarketCap(coinData.ath.usd)}
                 </div>
                 <div>
                     <h1>Market Sentiment</h1>

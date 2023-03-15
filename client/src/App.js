@@ -10,6 +10,7 @@ import { paths }  from "./components/Nav/links";
 export const UIContext = React.createContext();
 
 function App() {
+    console.log('rendering')
      // Get the current path from the URL and use it to set the initial currentPath state
     const location = useLocation().pathname.split("/", 2)[1];
 

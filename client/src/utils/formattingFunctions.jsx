@@ -1,8 +1,10 @@
 export const formatMarketCap = (market_cap) => {
-    market_cap = Math.round(market_cap)
-    if (market_cap >= 1000000000000) {
+
+    const market_cap_rounded = Math.round(market_cap)
+
+    if (market_cap_rounded >= 1000000000000) {
         console.log('formatting')
-        let string_market_cap = market_cap.toString();
+        let string_market_cap = market_cap_rounded.toString();
         string_market_cap = string_market_cap.slice(
             0,
             string_market_cap.length - 11
@@ -17,8 +19,8 @@ export const formatMarketCap = (market_cap) => {
             "T"
         );
     }
-    else if (market_cap >= 1000000000) {
-        let string_market_cap = market_cap.toString();
+    else if (market_cap_rounded >= 1000000000) {
+        let string_market_cap = market_cap_rounded.toString();
         string_market_cap = string_market_cap.slice(
             0,
             string_market_cap.length - 8
@@ -32,8 +34,8 @@ export const formatMarketCap = (market_cap) => {
             ) +
             "B"
         );
-    } else if (market_cap >= 1000000) {
-        let string_market_cap = market_cap.toString();
+    } else if (market_cap_rounded >= 1000000) {
+        let string_market_cap = market_cap_rounded.toString();
         string_market_cap = string_market_cap.slice(
             0,
             string_market_cap.length - 5
@@ -47,8 +49,8 @@ export const formatMarketCap = (market_cap) => {
             ) +
             "M"
         );
-    } else if (market_cap >= 1000) {
-        let string_market_cap = market_cap.toString();
+    } else if (market_cap_rounded >= 1000) {
+        let string_market_cap = market_cap_rounded.toString();
         string_market_cap = string_market_cap.slice(
             0,
             string_market_cap.length - 2
@@ -62,5 +64,7 @@ export const formatMarketCap = (market_cap) => {
             ) +
             "K"
         );
+    } else {
+        return market_cap;
     }
 };
