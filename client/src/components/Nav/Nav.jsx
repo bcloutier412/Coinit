@@ -1,4 +1,4 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import styles from "./Nav.module.css";
 import React from "react";
 import links from "./links";
@@ -34,6 +34,12 @@ const Nav = () => {
     Coinbase logo
 */
 const CoinBaseLogo = () => {
+    
+    const navigate = useNavigate()
+    
+    const handleClick = () => {
+        navigate('/home')
+    }
     return (
         <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -43,6 +49,7 @@ const CoinBaseLogo = () => {
             width="32"
             height="32"
             className={styles.svg}
+            onClick={handleClick}
         >
             <title>Coinbase logo</title>
             <path
