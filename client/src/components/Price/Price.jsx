@@ -155,29 +155,45 @@ const Chart = ({ apiData }) => {
 };
 
 const Stats = ({ apiData }) => {
-    const coinData = apiData[0].data.market_data;
-
+    const coinData = apiData[0].data;
+    const market_data = coinData.market_data;
+    console.log(coinData);
     return (
         <div className={`${styles.infoContainer} ${styles.bgWhite}`}>
             <header>Market stats</header>
             <div className={styles.statsContainer}>
                 <div>
                     <h1>Market cap</h1>$
-                    {formatMarketCap(coinData.market_cap.usd)}
+                    {formatMarketCap(market_data.market_cap.usd)}
                 </div>
                 <div>
                     <h1>Circulating supply</h1>
-                    {formatMarketCap(coinData.circulating_supply)}
+                    {formatMarketCap(market_data.circulating_supply)}
                 </div>
                 <div>
                     <h1>Total supply</h1>
-                    {formatMarketCap(coinData.total_supply)}
+                    {formatMarketCap(market_data.total_supply)}
                 </div>
                 <div>
-                    <h1>All time high</h1>${formatMarketCap(coinData.ath.usd)}
+                    <h1>All time high</h1>$
+                    {formatMarketCap(market_data.ath.usd)}
                 </div>
                 <div>
                     <h1>Market Sentiment</h1>
+                    <div className={styles.barWrapper}>
+                        <span style={{ color: "green" }}>
+                            {Math.ceil(coinData.sentiment_votes_up_percentage)}% buy
+                        </span>
+                        <div className={styles.barContainer}>
+                            {[...Array(Math.floor(coinData.sentiment_votes_up_percentage / 5))].map((x, i) => {
+                                return (<div key={i} style={{ backgroundColor: 'green'}}></div>)
+                            })}
+                            {[...Array(Math.ceil(coinData.sentiment_votes_down_percentage / 5))].map((x, i) => {
+                                return (<div key={i} style={{ backgroundColor: 'grey'}}></div>)
+                            })}
+                        </div>
+                        <span style={{ color: 'grey'}}>{Math.floor(coinData.sentiment_votes_down_percentage)}% sell</span>
+                    </div>
                 </div>
             </div>
         </div>

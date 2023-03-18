@@ -58,6 +58,22 @@
     color: #5B616E;
     padding-bottom: 5px;
 }
+.barWrapper {
+    display: flex;
+    align-items: center;
+    font-weight: 600;
+}
+.barContainer {
+    height: 17px;
+    display: flex;
+    gap: 3px;
+    margin: 0px 10px;
+}
+
+.barContainer div {
+    width: 2px;
+}
+
 .loader {
     height: 60px;
     width: 60px;
@@ -93,5 +109,13 @@
         display: flex;
         justify-content: space-between;
         padding: 16px 0px;
+        align-items: center;
+    }
+    .statsContainer > div > h1 {
+        padding-bottom: 0px;
+    }
+
+    .barContainer {
+        justify-content: end;
     }
 }
