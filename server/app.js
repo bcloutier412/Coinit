@@ -7,6 +7,7 @@ const userRouter = require("./controllers/user")
 const middleware = require("./utils/middleware");
 const logger = require("./utils/logger");
 const mongoose = require("mongoose");
+const path = require('path');
 
 mongoose.set("strictQuery", false);
 
@@ -23,7 +24,7 @@ mongoose
   });
 
 // Middleware before request hits routes
-app.use(express.static('build'))
+app.use(express.static(path.join(__dirname, 'build')));
 app.use(cors());
 app.use(express.json());
 app.use(middleware.requestLogger)
@@ -31,5 +32,8 @@ app.use(middleware.requestLogger)
 // Routes
 app.use("/api/coin", coinRouter);
 app.use("/api/user", userRouter);
+app.get('*', (req,res) =>{
+  res.sendFile(path.join(__dirname+'/build/index.html'));
+});
 
 module.exports = app;
