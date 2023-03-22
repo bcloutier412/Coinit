@@ -45,6 +45,10 @@ span {
 @media (max-width: 1459px) {
     .nav {
         width: 87px;
+        align-items: center;
+    }
+    .nav svg {
+        padding-left: 0px;
     }
     .linkText {
         display: none;
