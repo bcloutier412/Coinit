@@ -32,7 +32,7 @@ const Prices = ({ data }) => {
     const [currentTab, setCurrentTab] = useState('watchlistData')
 
     const handleDelete = async (coinID) => {
-        await axios.delete(`http://localhost:3001/api/user/watchlist/${coinID}`)
+        await axios.delete(`/api/user/watchlist/${coinID}`)
         
         const newData = {
             topCoinsData: currentData['topCoinsData'],

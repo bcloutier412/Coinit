@@ -21,10 +21,10 @@ const Price = () => {
             try {
                 const response = await Promise.all([
                     axios.get(
-                        `http://192.168.1.30:3001/api/coin/coinData/${coinID}`
+                        `/api/coin/coinData/${coinID}`
                     ),
                     axios.get(
-                        `http://192.168.1.30:3001/api/coin/chartData/${coinID}`
+                        `/api/coin/chartData/${coinID}`
                     ),
                 ]);
                 if (header.headerText !== response[0].data.name) {

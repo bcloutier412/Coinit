@@ -21,7 +21,7 @@ const getCoinData = (coinID) => {
 const getChartData = (coinID) => {
     const url =
         coinGeckoAPI +
-        `/coins/${coinID}/market_chart?vs_currency=usd&days=1&interval=5m`;
+        `/coins/${coinID}/market_chart?vs_currency=usd&days=1&interval=1m`;
 
     // Fetching chart data for a coin
     const response = axios.get(url, {

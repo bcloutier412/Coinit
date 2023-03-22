@@ -23,6 +23,7 @@ mongoose
   });
 
 // Middleware before request hits routes
+app.use(express.static('build'))
 app.use(cors());
 app.use(express.json());
 app.use(middleware.requestLogger)
