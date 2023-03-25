@@ -2,7 +2,8 @@ import styles from "./Home.module.css";
 import { useNavigate } from "react-router-dom";
 import { useState, useRef, useContext } from "react";
 import axios from "axios";
-// import { UIContext } from "../../App";
+import { UIContext } from "../../App";
+import { formatMarketCap } from "../../utils/formattingFunctions";
 
 const Main = ({ data }) => {
     return (
@@ -27,7 +28,7 @@ const Balance = () => {
 const Prices = ({ data }) => {
     const { header } = useContext(UIContext)
     const navigate = useNavigate();
-    const { header } = useContext(UIContext);
+
     const [currentData, setCurrentData] = useState(data);
     const [currentTab, setCurrentTab] = useState('watchlistData')
 
