@@ -157,7 +157,7 @@
 
 @media (max-width: 770px) {
     .coin {
-        padding-right: 10px;
+        padding-right: 5px;
     }
     .coin .coinMarketCap {
         display: none;
