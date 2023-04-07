@@ -74,11 +74,11 @@
     vertical-align: middle;
     line-height: 24px;
     background-color: rgb(247, 247, 247);
-
+    margin: 0px 2px;
 }
 
 .pricesContainer .button:hover {
-    background-color: rgb(247, 247, 247);
+    background-color: rgb(226, 226, 226);
     cursor: pointer;
 }
 /* 
@@ -156,6 +156,9 @@
 }
 
 @media (max-width: 770px) {
+    .coin {
+        padding-right: 10px;
+    }
     .coin .coinMarketCap {
         display: none;
     }
@@ -164,6 +167,9 @@
     }
     .coin > div {
         width: 33%;
+    }
+    .pricesContainer .button {
+        padding: 5px 10px;
     }
 }
 
@@ -200,4 +206,8 @@
 
 .bold {
     font-weight: 640;
+}
+
+.buttons .activeTab {
+    background-color: rgb(226, 226, 226);
 }

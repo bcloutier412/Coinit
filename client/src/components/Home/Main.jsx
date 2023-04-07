@@ -26,24 +26,24 @@ const Balance = () => {
 };
 
 const Prices = ({ data }) => {
-    const { header } = useContext(UIContext)
+    const { header } = useContext(UIContext);
     const navigate = useNavigate();
 
     const [currentData, setCurrentData] = useState(data);
-    const [currentTab, setCurrentTab] = useState('watchlistData')
+    const [currentTab, setCurrentTab] = useState("watchlistData");
 
     const handleDelete = async (coinID) => {
-        await axios.delete(`/api/user/watchlist/${coinID}`)
-        
-        const newData = {
-            topCoinsData: currentData['topCoinsData'],
-            watchlistData: currentData['watchlistData'].filter(coin => {
-                return coin.id !== coinID
-            })
-        }
+        await axios.delete(`/api/user/watchlist/${coinID}`);
 
-        setCurrentData(newData)
-    }
+        const newData = {
+            topCoinsData: currentData["topCoinsData"],
+            watchlistData: currentData["watchlistData"].filter((coin) => {
+                return coin.id !== coinID;
+            }),
+        };
+
+        setCurrentData(newData);
+    };
     return (
         <div className={styles.pricesContainer}>
             {/*
@@ -51,17 +51,19 @@ const Prices = ({ data }) => {
              * EX: Prices      <Watchlist>  <Top assets>
              */}
             <header>
-                <h1><div>Prices</div></h1>
+                <h1>
+                    <div>Prices</div>
+                </h1>
                 <div className={styles.buttons}>
                     <div
-                        onClick={() => setCurrentTab('watchlistData')}
-                        className={styles.button}
+                        onClick={() => setCurrentTab("watchlistData")}
+                        className={`${styles.button} ${currentTab === "watchlistData" && styles.activeTab}`}
                     >
                         Watchlist
                     </div>
                     <div
-                        onClick={() => setCurrentTab('topCoinsData')}
-                        className={styles.button}
+                        onClick={() => setCurrentTab("topCoinsData")}
+                        className={`${styles.button} ${currentTab === "topCoinsData" && styles.activeTab}`}
                     >
                         Top assets
                     </div>
@@ -77,7 +79,8 @@ const Prices = ({ data }) => {
              */}
             <div>
                 {currentData[currentTab].map((coin) => {
-                    const currentPrice = Math.round(coin.current_price * 10000) / 10000;
+                    const currentPrice =
+                        Math.round(coin.current_price * 10000) / 10000;
 
                     return (
                         <div
@@ -85,7 +88,7 @@ const Prices = ({ data }) => {
                             key={coin.id}
                             onClick={() => {
                                 navigate(`/price/${coin.id}`);
-                                header.setHeaderText(coin.name)
+                                header.setHeaderText(coin.name);
                             }}
                         >
                             <div className={styles.coinInfo}>
@@ -105,7 +108,9 @@ const Prices = ({ data }) => {
                             </div>
                             <div className={styles.coinPrice}>
                                 $
-                                {new Intl.NumberFormat('en-US').format(currentPrice)}
+                                {new Intl.NumberFormat("en-US").format(
+                                    currentPrice
+                                )}
                             </div>
                             <div
                                 className={`${
@@ -125,7 +130,10 @@ const Prices = ({ data }) => {
                                 ${formatMarketCap(coin.market_cap)}
                             </div>
                             <div className={styles.starButtonContainer}>
-                                <StarButton coinID={coin.id} handleDelete={handleDelete}/>
+                                <StarButton
+                                    coinID={coin.id}
+                                    handleDelete={handleDelete}
+                                />
                             </div>
                         </div>
                     );
@@ -141,7 +149,7 @@ const StarButton = ({ coinID, handleDelete }) => {
     const handleClick = (e) => {
         e.stopPropagation();
         containerRef.current.style.backgroundColor = "rgb(240, 243, 250)";
-        handleDelete(coinID)
+        handleDelete(coinID);
     };
 
     return (
